@@ -1,5 +1,6 @@
 package com.ichan.eshop.service.impl;
 
+import com.ichan.eshop.constant.ProductCategory;
 import com.ichan.eshop.dao.ProductDao;
 import com.ichan.eshop.dto.ProductRequest;
 import com.ichan.eshop.model.Product;
@@ -16,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts() {
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductCategory category, String search) {
+        return productDao.getProducts(category, search);
     }
 
     @Override
