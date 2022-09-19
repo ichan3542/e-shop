@@ -1,6 +1,7 @@
 package com.ichan.eshop.controller;
 
 import com.ichan.eshop.constant.ProductCategory;
+import com.ichan.eshop.dto.ProductQueryParams;
 import com.ichan.eshop.dto.ProductRequest;
 import com.ichan.eshop.model.Product;
 import com.ichan.eshop.service.ProductService;
@@ -24,7 +25,11 @@ public class ProductController {
             @RequestParam(required = false) ProductCategory category,
             @RequestParam(required = false) String search
     ) {
-        List<Product> productList = productService.getProducts(category, search);
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
+
+        List<Product> productList = productService.getProducts(productQueryParams);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }

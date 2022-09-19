@@ -1,6 +1,7 @@
 package com.ichan.eshop.dao;
 
 import com.ichan.eshop.constant.ProductCategory;
+import com.ichan.eshop.dto.ProductQueryParams;
 import com.ichan.eshop.dto.ProductRequest;
 import com.ichan.eshop.model.Product;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface ProductDao {
 
-    List<Product> getProducts(ProductCategory category, String search);
+    List<Product> getProducts(ProductQueryParams productQueryParams);
 
     Product getProductById(Integer productId);
 
