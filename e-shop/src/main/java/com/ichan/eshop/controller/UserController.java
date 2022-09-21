@@ -1,5 +1,6 @@
 package com.ichan.eshop.controller;
 
+import com.ichan.eshop.dto.UserLoginRequest;
 import com.ichan.eshop.dto.UserRegisterRequest;
 import com.ichan.eshop.model.User;
 import com.ichan.eshop.service.UserService;
@@ -25,5 +26,12 @@ public class UserController {
         User user = userService.getUserById(userId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    @PostMapping("/users/login")
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
+        User user = userService.login(userLoginRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 }
