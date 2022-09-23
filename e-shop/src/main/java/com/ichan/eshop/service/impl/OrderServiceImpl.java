@@ -4,6 +4,7 @@ import com.ichan.eshop.dao.OrderDao;
 import com.ichan.eshop.dao.ProductDao;
 import com.ichan.eshop.dto.BuyItem;
 import com.ichan.eshop.dto.CreateOrderRequest;
+import com.ichan.eshop.model.Order;
 import com.ichan.eshop.model.OrderItem;
 import com.ichan.eshop.model.Product;
 import com.ichan.eshop.service.OrderService;
@@ -24,6 +25,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductDao productDao;
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
+    }
 
     @Transactional
     @Override
